@@ -4,7 +4,7 @@
 import os
 snum_lst = ['0','1','2','3','4','5','6','7','8','9']
 num_lst = [0,1,2,3,4,5,6,7,8,9]
-sgn_lst = ['+','-','*','/','^','!']
+opr_lst = ['+','-','*','/','^','!']
 
 stackL=[]
 fL = []
@@ -15,7 +15,7 @@ def sPush(a):
 def sPop():
 	stackL.pop()
 
-def sgnc(sign):
+def opreate(sign):
 	stklen = len(stackL)
 	if sign == '+':
 		reg = stackL[stklen-1] + stackL[stklen-2]
@@ -69,7 +69,7 @@ def parse(seq):
 
 			tempstr = ''
 
-		if glst[i] in sgn_lst:
+		if glst[i] in opr_lst:
 			#check tempstr
 			if tempstr == '':
 				pass
@@ -86,8 +86,8 @@ def calc(seq):
 	for i in lst:
 		if str(type(i)) == "<class 'int'>":
 			sPush(i)
-		if i in sgn_lst:
-			sgnc(i)
+		if i in opr_lst:
+			opreate(i)
 
 	return stackL[0]
 
